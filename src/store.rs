@@ -1,20 +1,36 @@
-use std::path::Path;
 use bawikv::BawiKv;
-pub struct Store (u8)
+use bawikv::{InternalError, Result};
+use std::error::Error;
+use std::path::Path;
+
+pub struct Store {
+    bdb: BawiKv,
+}
 
 impl Store {
-    pub fn new() -> Self {
-
+    /// TODO: new
+    pub fn new() -> Store {
+        let path = Path::new("rote_store");
+        let bdb = BawiKv::open(path).unwrap();
+        Store { bdb }
     }
-    fn get(key: &str) -> String {
-        "get value"
+    /// TODO: get
+    pub fn get(&mut self, key: String) -> Result<String> {
+        let value = self.bdb.get(key)?;
+        if let Some(val) = value {
+            return Ok(val);
+        } else {
+            return Err(InternalError::Unexpected);
+        }
     }
-
-    fn put(key: &str, value: &str) -> String {
-        "put value"
+    /// TODO: put
+    pub fn put(&mut self, key: String, value: String) -> Result<()> {
+        self.bdb.put(key, value);
+        Ok(())
     }
-
-    fn find_by_key(key: &str) -> {
+    /// TODO: find_by_key
+    fn find_by_key(key: &str) -> &str {
+        /// TODO
         "find value"
     }
 }
