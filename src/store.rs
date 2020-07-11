@@ -10,7 +10,7 @@ pub struct Store {
 impl Store {
     /// TODO: new
     pub fn new() -> Store {
-        let path = Path::new("rote_store");
+        let path = Path::new("climo_store");
         let bdb = BawiKv::open(path).unwrap();
         Store { bdb }
     }
