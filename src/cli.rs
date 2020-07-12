@@ -3,51 +3,28 @@ use clap::{App, Arg};
 use clipboard::ClipboardContext;
 use clipboard::ClipboardProvider;
 
+use crate::commands::{get_cmd, put_cmd};
+
 use crate::Store;
 
 pub fn cli() {
   let app = App::new(crate_name!())
     .version(crate_version!())
-    .about("terminal-based text storage based on key-value")
-    .author("dennis.jung");
-
-  // Define the name command line option
-  let key_option = Arg::with_name("key")
-    .about("Key of Set")
-    .required(true)
-    .index(1);
-
-  let get_key_option = Arg::with_name("key")
-    .about("Key of Set")
-    .required(true)
-    .index(1);
-
-  let value_option = Arg::with_name("value")
-    .about("value of Set")
-    .required(true)
-    .index(2);
-
-  let put_command = App::new("put")
-    .about("put data in kv")
-    .arg(key_option)
-    .arg(value_option);
-
-  let get_command = App::new("get").about("value of Set").arg(get_key_option);
+    .author("dennis.jung<inylove82@gmail.com>")
+    .about("terminal-based text storage based on key-value");
   // now add in the argument we want to parse
   // extract the matches
   let mut store = Store::new();
 
   let matches = app
-    .subcommand(put_command)
-    .subcommand(get_command)
+    .subcommand(put_cmd())
+    .subcommand(get_cmd())
     .get_matches();
+
   if let Some(matches) = matches.subcommand_matches("put") {
-    if let Some(key) = matches.value_of("key") {
-      println!("Printing key: {}", key);
-    }
-    if let Some(value) = matches.value_of("value") {
-      println!("Printing value: {}", value);
-    }
+    let key = matches.value_of("key").unwrap();
+    let value = matches.value_of("value").unwrap();
+    store.put(String::from(key), String::from(value));
   }
 
   if let Some(matches) = matches.subcommand_matches("get") {
