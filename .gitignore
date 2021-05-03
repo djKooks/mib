@@ -1,4 +1,10 @@
-/target
+# IDE
+.idea/
 
+# python
+build/
+dist/
+packup_cli.egg-info/
+__pycache__/
+venv/
 
-/climo_store
