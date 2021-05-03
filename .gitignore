@@ -4,7 +4,9 @@
 # python
 build/
 dist/
-packup_cli.egg-info/
+climo.egg-info/
 __pycache__/
 venv/
 
+# storage
+climo.bin
