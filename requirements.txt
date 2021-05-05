@@ -1,2 +1,2 @@
-sphinx
-click
+click==7.1.2
+sphinx==3.5.4
