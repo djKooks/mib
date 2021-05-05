@@ -11,6 +11,19 @@ def cli():
 
 
 @cli.command()
+def init():
+    import os
+    myhost = os.uname()[1]
+    with open(STORAGE_FILE, 'wb') as storage:
+        init_dict = {
+            'climo': myhost,
+            key: value
+        }
+
+        pickle.dump(init_dict, storage)
+
+
+@cli.command()
 @click.argument('key')
 def get(key):
     print('get by key')
@@ -30,14 +43,8 @@ def put(key, value):
         update_storage[key] = value
         pickle.dump(update_storage, wf)
     except FileNotFoundError:
-        print('No storage, create automatically')
-        with open(STORAGE_FILE, 'wb') as storage:
-            init_dict = {
-                'climo': 'djKooks',
-                key: value
-            }
-
-            pickle.dump(init_dict, storage)
+        print('No storage, create with `init` option')
+        
 
 @cli.command()
 def show():
