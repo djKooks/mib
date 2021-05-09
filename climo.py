@@ -27,7 +27,8 @@ def get(key):
     try:
         with open(STORAGE_FILE, 'rb') as pk_storage:
             storage = pickle.load(pk_storage)
-            storage.get(key)
+            val = storage.get(key)
+            print(val)
     except FileNotFoundError:
         print('No storage, create with `init` option')
 
@@ -47,6 +48,21 @@ def put(key, value):
     except FileNotFoundError:
         print('No storage, create with `init` option')
         
+
+@cli.command()
+@click.argument('key')
+def delete(key):
+    try:
+        rf = open(STORAGE_FILE, 'rb')
+        update_storage = pickle.load(rf)
+        rf.close()
+
+        wf = open(STORAGE_FILE, 'wb')
+        update_storage.delete(key)
+        pickle.dump(update_storage, wf)
+    except FileNotFoundError:
+        print('No storage, create with `init` option')
+
 
 @cli.command()
 def show():
