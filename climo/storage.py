@@ -1,7 +1,8 @@
-import pickle
+import sys
+import os
+# import pickle
 
-
-class Storage:
+class Storage(object):
     def __init__(self, id):
         self.id = id
         self.kv = dict()
