@@ -1,6 +1,7 @@
 import sys
 import os
 # import pickle
+from climo.console import print_table_line, print_table_row, print_table_header
 
 class Storage(object):
     def __init__(self, id):
@@ -23,6 +24,9 @@ class Storage(object):
             print(f'Delete key : {key}')
 
     def list(self):
+        print()
+        print_table_header()
         for key, value in self.kv.items():
-            print(f'{key} -> {value}')
+            print_table_row(key, value)
 
+        print_table_line()
