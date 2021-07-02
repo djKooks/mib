@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 import click
 import pickle
 
-from storage import Storage
+from climo.storage import Storage
 
 
 STORAGE_FILE = 'climo.bin'
@@ -13,12 +12,16 @@ def cli():
 
 
 @cli.command()
-def init():
+@click.option('-l', '--lock', 'lock')
+def init(lock):
     import os
     myhost = os.uname()[1]
+    print(lock)
+    '''
     with open(STORAGE_FILE, 'wb') as f:
         storage = Storage(myhost)
         pickle.dump(storage, f)
+    '''
 
 
 @cli.command()
@@ -65,10 +68,10 @@ def delete(key):
 
 
 @cli.command()
-def show():
-    with open(STORAGE_FILE, 'rb') as storage:
+def list():
+    with open(STORAGE_FILE, 'rb') as buf_read:
         try:
-            data = pickle.load(storage)
+            data = pickle.load(buf_read)
             data.list()
         except EOFError:
             raise Exception('Cannot load file')

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import codecs
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
+
+from climo import __app_name__, __version__
 
 here = os.path.dirname(os.path.abspath(__file__))
 
@@ -17,15 +19,17 @@ with codecs.open(os.path.join(here, 'requirements.txt')) as f:
     ]
 
 setup(
-    name='climo',
-    version='0.1.0',
-    description='',
+    name=__app_name__,
+    version=__version__,
+    description='TODO:',
     long_description=readme,
     license=license,
     install_requires=install_requirements,
+    packages=find_packages(exclude=['tests']),
+    include_package_data=True,
     py_modules=['climo'],
     entry_points='''
         [console_scripts]
-        climo=climo:cli
+        climo=climo.main:cli
     ''',
 )
