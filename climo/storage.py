@@ -3,6 +3,7 @@ import os
 # import pickle
 from climo.console import print_table_line, print_table_row, print_table_header
 
+
 class Storage(object):
     def __init__(self, id):
         self.id = id
@@ -19,7 +20,7 @@ class Storage(object):
     def delete(self, key):
         removed_value = self.kv.pop(key, None)
         if removed_value is None:
-            print('Not exists key')
+            print(f'Cannot find key `{key}`')
         else:
             print(f'Delete key : {key}')
 

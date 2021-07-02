@@ -12,12 +12,16 @@ def cli():
 
 
 @cli.command()
-def init():
+@click.option('-l', '--lock', 'lock')
+def init(lock):
     import os
     myhost = os.uname()[1]
+    print(lock)
+    '''
     with open(STORAGE_FILE, 'wb') as f:
         storage = Storage(myhost)
         pickle.dump(storage, f)
+    '''
 
 
 @cli.command()
@@ -64,7 +68,7 @@ def delete(key):
 
 
 @cli.command()
-def show():
+def list():
     with open(STORAGE_FILE, 'rb') as buf_read:
         try:
             data = pickle.load(buf_read)
