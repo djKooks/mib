@@ -1,10 +1,10 @@
 import click
 import pickle
 
-from climo.storage import Storage
+from mib.storage import Storage
 
 
-STORAGE_FILE = 'climo.bin'
+STORAGE_FILE = 'mib.bin'
 
 @click.group()
 def cli():

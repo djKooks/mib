@@ -5,9 +5,9 @@
 # python
 build/
 dist/
-climo.egg-info/
+mib.egg-info/
 __pycache__/
-venv/
+.venv/
 
 # storage
-climo.bin
+mib.bin
