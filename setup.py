@@ -3,7 +3,7 @@ import codecs
 import os
 from setuptools import setup, find_packages
 
-from mib import __app_name__, __version__
+from marc import __app_name__, __version__
 
 here = os.path.dirname(os.path.abspath(__file__))
 
@@ -27,9 +27,9 @@ setup(
     install_requires=install_requirements,
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
-    py_modules=['mib'],
+    py_modules=['marc'],
     entry_points='''
         [console_scripts]
-        mib=mib.main:cli
+        marc=marc.main:cli
     ''',
 )

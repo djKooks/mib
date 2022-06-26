@@ -5,9 +5,9 @@
 # python
 build/
 dist/
-mib.egg-info/
+marc.egg-info/
 __pycache__/
 .venv/
 
 # storage
-mib.bin
+marc.bin
