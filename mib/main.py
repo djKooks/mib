@@ -1,10 +1,10 @@
 import click
 import pickle
 
-from mib.storage import Storage
+from marc.storage import Storage
 
 
-STORAGE_FILE = 'mib.bin'
+STORAGE_FILE = 'marc.bin'
 
 @click.group()
 def cli():
@@ -17,11 +17,11 @@ def init(lock):
     import os
     myhost = os.uname()[1]
     print(lock)
-    '''
+    
     with open(STORAGE_FILE, 'wb') as f:
         storage = Storage(myhost)
         pickle.dump(storage, f)
-    '''
+    
 
 
 @cli.command()
@@ -36,7 +36,7 @@ def get(key):
         print('No storage, create with `init` option')
 
 
-@cli.command()
+@cli.command(help='Put key-value set')
 @click.argument('key')
 @click.argument('value')
 def put(key, value):

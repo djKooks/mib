@@ -1,5 +1,5 @@
 from click.testing import CliRunner
-from mib.main import init
+from marc.main import init
 
 def test_hello_world():
   runner = CliRunner()
