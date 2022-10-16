@@ -3,7 +3,7 @@ import codecs
 import os
 from setuptools import setup, find_packages
 
-from marc import __app_name__, __version__
+from slic import __app_name__, __version__
 
 here = os.path.dirname(os.path.abspath(__file__))
 
@@ -27,9 +27,9 @@ setup(
     install_requires=install_requirements,
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
-    py_modules=['marc'],
+    py_modules=['slic'],
     entry_points='''
         [console_scripts]
-        marc=marc.main:cli
+        slic=slic.main:cli
     ''',
 )

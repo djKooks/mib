@@ -5,9 +5,9 @@
 # python
 build/
 dist/
-marc.egg-info/
+slic.egg-info/
 __pycache__/
 .venv/
 
 # storage
-marc.bin
+slic.bin

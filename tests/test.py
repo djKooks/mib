@@ -1,5 +1,5 @@
 from click.testing import CliRunner
-from marc.main import init
+from slic.main import init
 
 def test_hello_world():
   runner = CliRunner()

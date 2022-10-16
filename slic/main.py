@@ -1,30 +1,28 @@
 import click
 import pickle
 
-from marc.storage import Storage
+from slic.storage import Storage
 
 
-STORAGE_FILE = 'marc.bin'
+STORAGE_FILE = 'slic.bin'
 
 @click.group()
 def cli():
     pass
 
 
-@cli.command()
+@cli.command('init')
 @click.option('-l', '--lock', 'lock')
 def init(lock):
     import os
     myhost = os.uname()[1]
-    print(lock)
     
     with open(STORAGE_FILE, 'wb') as f:
         storage = Storage(myhost)
         pickle.dump(storage, f)
     
 
-
-@cli.command()
+@cli.command('get')
 @click.argument('key')
 def get(key):
     try:
@@ -36,7 +34,7 @@ def get(key):
         print('No storage, create with `init` option')
 
 
-@cli.command(help='Put key-value set')
+@cli.command('put', help='Put key-value set')
 @click.argument('key')
 @click.argument('value')
 def put(key, value):
@@ -52,7 +50,7 @@ def put(key, value):
         print('No storage, create with `init` option')
         
 
-@cli.command()
+@cli.command('delete')
 @click.argument('key')
 def delete(key):
     try:
@@ -67,7 +65,7 @@ def delete(key):
         print('No storage, create with `init` option')
 
 
-@cli.command()
+@cli.command('list')
 def list():
     with open(STORAGE_FILE, 'rb') as buf_read:
         try:
