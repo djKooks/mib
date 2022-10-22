@@ -6,6 +6,7 @@ from membli.utils import copy_to_clip
 
 STORAGE_FILE = 'membli.bin'
 
+
 @click.group()
 def cli():
     pass
