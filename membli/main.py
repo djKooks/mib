@@ -2,7 +2,7 @@ import click
 import pickle
 
 from membli.storage import Storage
-
+from membli.utils import copy_to_clip
 
 STORAGE_FILE = 'membli.bin'
 
@@ -27,7 +27,8 @@ def init(lock):
 
 @cli.command('get', help='Get value from key-value set')
 @click.argument('key')
-def get(key):
+@click.option('-c', '--copy', 'is_copy', is_flag=True)
+def get(key, is_copy):
     """
     TODO:
     """
@@ -36,7 +37,14 @@ def get(key):
         with open(STORAGE_FILE, 'rb') as pk_storage:
             storage = pickle.load(pk_storage)
             val = storage.get(key)
-            print(val)
+
+            if is_copy:
+                if copy_to_clip(val):
+                    print('Value has been copied to clipboard')
+                else:
+                    print('Copy has been failed for unexpected reason')
+            else:
+                print(val)
     except FileNotFoundError:
         print('No storage, create with `init` option')
 
@@ -90,7 +98,7 @@ def list():
 
     with open(STORAGE_FILE, 'rb') as buf_read:
         try:
-            data = pickle.load(buf_read)
+            data: Storage = pickle.load(buf_read)
             data.list()
         except EOFError:
             raise Exception('Cannot load file')
