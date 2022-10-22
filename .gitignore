@@ -5,9 +5,9 @@
 # python
 build/
 dist/
-slic.egg-info/
+membli.egg-info/
 __pycache__/
 .venv/
 
 # storage
-slic.bin
+membli.bin

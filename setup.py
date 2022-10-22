@@ -3,7 +3,7 @@ import codecs
 import os
 from setuptools import setup, find_packages
 
-from slic import __app_name__, __version__
+from membli import __app_name__, __version__
 
 here = os.path.dirname(os.path.abspath(__file__))
 
@@ -21,15 +21,15 @@ with codecs.open(os.path.join(here, 'requirements.txt')) as f:
 setup(
     name=__app_name__,
     version=__version__,
-    description='TODO:',
+    description='membli : TODO',
     long_description=readme,
     license=license,
     install_requires=install_requirements,
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
-    py_modules=['slic'],
+    py_modules=['membli'],
     entry_points='''
         [console_scripts]
-        slic=slic.main:cli
+        mbli=membli.main:cli
     ''',
 )

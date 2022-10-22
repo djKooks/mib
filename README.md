@@ -1,5 +1,5 @@
-# slic
-Lightweight cli-based memo note
+# membli
+Lightweight cli-based key-value note
 
 // TODO: detail description
 
@@ -8,6 +8,8 @@ Lightweight cli-based memo note
 
 ```
 $ pip install -e .
-$ slic <command>
+$ mbli <command>
 ```
+
+
 
