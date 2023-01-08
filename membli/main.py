@@ -12,9 +12,9 @@ def cli():
     pass
 
 
-@cli.command('init', help='initiate key-value storage')
-@click.option('-l', '--lock', 'lock')
-def init(lock):
+@cli.command('create', help='Create key-value storage')
+# @click.option('-l', '--lock', 'lock')
+def create(lock):
     """
     TODO:
     """
@@ -26,10 +26,10 @@ def init(lock):
         pickle.dump(storage, f)
     
 
-@cli.command('get', help='Get value from key-value set')
+@cli.command('get', help='Get value from storage with key')
 @click.argument('key')
 @click.option('-c', '--copy', 'is_copy', is_flag=True)
-def get(key, is_copy):
+def get(key, is_copy: bool):
     """
     TODO:
     """
@@ -41,16 +41,16 @@ def get(key, is_copy):
 
             if is_copy:
                 if copy_to_clip(val):
-                    print('Value has been copied to clipboard')
+                    print(f'Value for key "{key}" has been copied to clipboard')
                 else:
                     print('Copy has been failed for unexpected reason')
             else:
                 print(val)
     except FileNotFoundError:
-        print('No storage, create with `init` option')
+        print('No storage, create with `create` option')
 
 
-@cli.command('put', help='Put key-value set')
+@cli.command('put', help='Put key-value set to storage')
 @click.argument('key')
 @click.argument('value')
 def put(key, value):
@@ -67,7 +67,7 @@ def put(key, value):
         update_storage.update(key, value)
         pickle.dump(update_storage, wf)
     except FileNotFoundError:
-        print('No storage, create with `init` option')
+        print('No storage, create with `create` option')
         
 
 @cli.command('delete', help='Delete key-value set from storage')
@@ -88,7 +88,7 @@ def delete(key):
         wf.close()
         
     except FileNotFoundError:
-        print('No storage, create with `init` option')
+        print('No storage, create with `create` option')
 
 
 @cli.command('list', help='Display list of key-value sets in storage')
