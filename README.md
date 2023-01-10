@@ -8,8 +8,7 @@ Lightweight cli-based key-value note
 
 ### With source code
 ```
-$ cd /path/to/membli
-$ pip install -e .
+$ python3 -m pip install -e path/to/membli
 ...
 $ mbli <command>
 ...

@@ -1,3 +1,5 @@
+import os
+from os.path import exists as file_exists
 import click
 import pickle
 
@@ -13,13 +15,20 @@ def cli():
 
 
 @cli.command('create', help='Create key-value storage')
-# @click.option('-l', '--lock', 'lock')
-def create(lock):
+@click.option('-i', '--init', 'init')
+def create(init, lock):
     """
     TODO:
     """
-    import os
     myhost = os.uname()[1]
+
+    if file_exists(STORAGE_FILE):
+        if init:
+            print('Initiate current storage file.')
+            os.remove(STORAGE_FILE)
+        else:    
+            print('Storage file already exists. Add -i (--init) option to re-create it.')
+            return False
     
     with open(STORAGE_FILE, 'wb') as f:
         storage = Storage(myhost)
@@ -33,7 +42,6 @@ def get(key, is_copy: bool):
     """
     TODO:
     """
-
     try:
         with open(STORAGE_FILE, 'rb') as pk_storage:
             storage = pickle.load(pk_storage)
