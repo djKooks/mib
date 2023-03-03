@@ -1,7 +1,7 @@
 import sys
 import os
 # import pickle
-from membli.console import print_table_line, print_table_row, print_table_header
+from packman.console import print_table_line, print_table_row, print_table_header
 
 
 class Storage(object):

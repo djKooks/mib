@@ -1,4 +1,4 @@
-# membli
+# packman
 Lightweight cli-based key-value note
 
 // TODO: detail description
@@ -8,7 +8,7 @@ Lightweight cli-based key-value note
 
 ### With source code
 ```
-$ python3 -m pip install -e path/to/membli
+$ python3 -m pip install -e path/to/packman
 ...
 $ mbli <command>
 ...

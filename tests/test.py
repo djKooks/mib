@@ -1,5 +1,5 @@
 from click.testing import CliRunner
-from membli.main import init
+from packman.main import init
 
 def test_hello_world():
   runner = CliRunner()

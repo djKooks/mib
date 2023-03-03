@@ -1,12 +1,14 @@
 import os
 from os.path import exists as file_exists
+
 import click
 import pickle
 
-from membli.storage import Storage
-from membli.utils import copy_to_clip
+from packman.storage import Storage
+from packman.utils import copy_to_clip
 
-STORAGE_FILE = 'membli.bin'
+STORAGE_DIRECTORY_PATH = os.path.join('~', '.packman')
+STORAGE_FILE = os.path.expanduser(os.path.join(STORAGE_DIRECTORY_PATH, 'storage.bin'))
 
 
 @click.group()
@@ -16,7 +18,7 @@ def cli():
 
 @cli.command('create', help='Create key-value storage')
 @click.option('-i', '--init', 'init')
-def create(init, lock):
+def create(init):
     """
     TODO:
     """
@@ -29,6 +31,11 @@ def create(init, lock):
         else:    
             print('Storage file already exists. Add -i (--init) option to re-create it.')
             return False
+    else:
+        from pathlib import Path
+        
+        storage_dir = os.path.expanduser(STORAGE_DIRECTORY_PATH)
+        Path(storage_dir).mkdir(parents=True, exist_ok=True)
     
     with open(STORAGE_FILE, 'wb') as f:
         storage = Storage(myhost)
@@ -105,10 +112,12 @@ def list():
     TODO:
     """
 
-    with open(STORAGE_FILE, 'rb') as buf_read:
-        try:
-            data: Storage = pickle.load(buf_read)
-            data.list()
-        except EOFError:
-            raise Exception('Cannot load file')
-
+    try:
+        with open(STORAGE_FILE, 'rb') as buf_read:
+            try:
+                data: Storage = pickle.load(buf_read)
+                data.list()
+            except EOFError:
+                raise Exception('Cannot load file')
+    except FileNotFoundError:
+        print('No storage file found. Create new one with `create` option.')

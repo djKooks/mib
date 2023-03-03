@@ -5,8 +5,8 @@ import logging
 
 def logger():
     logging.basicConfig(level=logging.DEBUG)
-    membli_logger = logging.getLogger('membli')
-    return membli_logger
+    packman_logger = logging.getLogger('packman')
+    return packman_logger
 
 
 def copy_to_clip(copy_str: str) -> bool:

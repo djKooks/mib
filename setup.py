@@ -3,7 +3,7 @@ import codecs
 import os
 from setuptools import setup, find_packages
 
-from membli import __app_name__, __version__
+from packman import __app_name__, __version__
 
 here = os.path.dirname(os.path.abspath(__file__))
 
@@ -21,15 +21,15 @@ with codecs.open(os.path.join(here, 'requirements.txt')) as f:
 setup(
     name=__app_name__,
     version=__version__,
-    description='membli : TODO',
+    description='packman : TODO',
     long_description=readme,
     license=license,
     install_requires=install_requirements,
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
-    py_modules=['membli'],
+    py_modules=['packman'],
     entry_points='''
         [console_scripts]
-        mbli=membli.main:cli
+        pkman=packman.main:cli
     ''',
 )

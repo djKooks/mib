@@ -5,9 +5,9 @@
 # python
 build/
 dist/
-membli.egg-info/
+packman.egg-info/
 __pycache__/
 .venv/
 
 # storage
-membli.bin
+packman.bin
