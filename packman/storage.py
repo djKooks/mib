@@ -1,5 +1,6 @@
 import sys
 import os
+
 # import pickle
 from packman.console import print_table_line, print_table_row, print_table_header
 
@@ -20,9 +21,9 @@ class Storage(object):
     def delete(self, key):
         removed_value = self.kv.pop(key, None)
         if removed_value is None:
-            print(f'Cannot find key `{key}`')
+            print(f"Cannot find key `{key}`")
         else:
-            print(f'Delete key : {key}')
+            print(f"Delete key : {key}")
 
     def list(self):
         print()
