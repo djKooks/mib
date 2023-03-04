@@ -9,6 +9,13 @@ def logger():
     return packman_logger
 
 
+def command_parser(command: str, *args):
+    for idx, arg in enumerate(*args):
+        command = command.replace('{' + str(idx + 1) + '}', arg)
+
+    return command
+
+
 def copy_to_clip(copy_str: str) -> bool:
     os_type = platform.system()
     logger().debug('platform is : ' + os_type)

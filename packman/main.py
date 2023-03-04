@@ -4,14 +4,15 @@ from os.path import exists as file_exists
 import click
 import pickle
 
+from packman.alias_group import AliasedGroup
 from packman.storage import Storage
-from packman.utils import copy_to_clip
+from packman.utils import copy_to_clip, command_parser
 
 STORAGE_DIRECTORY_PATH = os.path.join('~', '.packman')
 STORAGE_FILE = os.path.expanduser(os.path.join(STORAGE_DIRECTORY_PATH, 'storage.bin'))
 
 
-@click.group()
+@click.group(cls=AliasedGroup)
 def cli():
     pass
 
@@ -121,3 +122,22 @@ def list():
                 raise Exception('Cannot load file')
     except FileNotFoundError:
         print('No storage file found. Create new one with `create` option.')
+
+
+@cli.command('run', help='Trigger command in storage')
+@click.argument('key')
+@click.argument('arguments', nargs=-1)
+def run(key, arguments):
+    """
+    TODO: 
+    """
+    try:
+        with open(STORAGE_FILE, 'rb') as pk_storage:
+            storage = pickle.load(pk_storage)
+            val = storage.get(key)
+            command = command_parser(val, arguments)
+            os.system(command)
+
+    except FileNotFoundError:
+        print('No storage, create with `create` option')
+
