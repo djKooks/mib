@@ -8,7 +8,7 @@ Pack up your command
 ```
 $ python3 -m pip install -e path/to/laconic
 ...
-$ pkman <command>
+$ lcn <command>
 ...
 ```
 
@@ -24,10 +24,10 @@ by changing value of `sort-by` and `field-selector`.
 
 `laconic` offers packaged command, by wrapping up existing command.
 ```
-$ pkman put k8s-sort-field "kubectl get pods --sort-by={1} --field-selector=status.phase={2}"
+$ lcn put k8s-sort-field "kubectl get pods --sort-by={1} --field-selector=status.phase={2}"
 ...
 // this commands works same as 'kubectl get pods --sort-by=.metadata.name --field-selector=status.phase=Running'
-$ pkman run k8s-sort-field .metadata.name Running
+$ lcn run k8s-sort-field .metadata.name Running
 ```
 
 ### Commands
