@@ -5,8 +5,8 @@ import logging
 
 def logger():
     logging.basicConfig(level=logging.DEBUG)
-    packman_logger = logging.getLogger("packman")
-    return packman_logger
+    laconic_logger = logging.getLogger("laconic")
+    return laconic_logger
 
 
 def command_parser(command: str, *args):

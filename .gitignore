@@ -5,9 +5,9 @@
 # python
 build/
 dist/
-packman.egg-info/
+laconic.egg-info/
 __pycache__/
 .venv/
 
 # storage
-packman.bin
+laconic.bin

@@ -1,4 +1,4 @@
-# packman
+# laconic
 Pack up your command
 
 
@@ -6,7 +6,7 @@ Pack up your command
 
 ### With source code
 ```
-$ python3 -m pip install -e path/to/packman
+$ python3 -m pip install -e path/to/laconic
 ...
 $ pkman <command>
 ...
@@ -22,7 +22,7 @@ $ kubectl get pods --sort-by=.metadata.name --field-selector=status.phase=Runnin
 ```
 by changing value of `sort-by` and `field-selector`.
 
-`packman` offers packaged command, by wrapping up existing command.
+`laconic` offers packaged command, by wrapping up existing command.
 ```
 $ pkman put k8s-sort-field "kubectl get pods --sort-by={1} --field-selector=status.phase={2}"
 ...

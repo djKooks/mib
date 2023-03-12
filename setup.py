@@ -3,7 +3,7 @@ import codecs
 import os
 from setuptools import setup, find_packages
 
-from packman import __app_name__, __version__
+from laconic import __app_name__, __version__
 
 here = os.path.dirname(os.path.abspath(__file__))
 
@@ -21,15 +21,15 @@ with codecs.open(os.path.join(here, 'requirements.txt')) as f:
 setup(
     name=__app_name__,
     version=__version__,
-    description='packman : TODO',
+    description='laconic : TODO',
     long_description=readme,
     license=license,
     install_requires=install_requirements,
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
-    py_modules=['packman'],
+    py_modules=['laconic'],
     entry_points='''
         [console_scripts]
-        pkman=packman.main:cli
+        lcn=laconic.main:cli
     ''',
 )

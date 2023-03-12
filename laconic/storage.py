@@ -2,7 +2,7 @@ import sys
 import os
 
 # import pickle
-from packman.console import print_table_line, print_table_row, print_table_header
+from laconic.console import print_table_line, print_table_row, print_table_header
 
 
 class Storage(object):

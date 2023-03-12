@@ -4,11 +4,11 @@ from os.path import exists as file_exists
 import click
 import pickle
 
-from packman.alias_group import AliasedGroup
-from packman.storage import Storage
-from packman.utils import copy_to_clip, command_parser
+from laconic.alias_group import AliasedGroup
+from laconic.storage import Storage
+from laconic.utils import copy_to_clip, command_parser
 
-STORAGE_DIRECTORY_PATH = os.path.join("~", ".packman")
+STORAGE_DIRECTORY_PATH = os.path.join("~", ".laconic")
 STORAGE_FILE = os.path.expanduser(os.path.join(STORAGE_DIRECTORY_PATH, "storage.bin"))
 
 
